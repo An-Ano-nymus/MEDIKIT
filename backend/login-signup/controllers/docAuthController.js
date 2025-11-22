@@ -1,5 +1,5 @@
 const Doctor = require('../models/Doctor');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // ✅ SIGNUP
 exports.signupDoctor = async (req, res) => {
