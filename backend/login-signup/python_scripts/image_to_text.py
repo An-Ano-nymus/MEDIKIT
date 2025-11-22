@@ -1,14 +1,22 @@
 
 # !pip install pytesseract pdf2image matplotlib opencv-python
 import sys
+import os
+import platform
 import cv2
 import pytesseract
 from pdf2image import convert_from_path
 import matplotlib.pyplot as plt
-import os
 
-# Set path to tesseract executable (only for Windows)
-pytesseract.pytesseract.tesseract_cmd = r"python_scripts\Image to text via tesseract\tesseract.exe"
+# Optional overrides for OCR binaries
+TESSERACT_PATH = os.environ.get('TESSERACT_PATH')
+if not TESSERACT_PATH and platform.system().lower().startswith('win'):
+    TESSERACT_PATH = r"python_scripts\Image to text via tesseract\tesseract.exe"
+
+if TESSERACT_PATH:
+    pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
+
+POPPLER_PATH = os.environ.get('POPPLER_PATH')
 
 def img_to_string(image_path):
     """Extract text from an image file."""
@@ -28,8 +36,11 @@ def img_to_string(image_path):
 
 def pdf_to_text(pdf_path):
     """Convert PDF pages to images and extract text from each page."""
-    pages = convert_from_path(pdf_path, dpi=300,poppler_path=r"C:\Users\hp\Desktop\dawa_ware\backend\login-signup\python_scripts\Poppler Release-24.08.0-0\poppler-24.08.0\Library\bin"
-)
+    convert_kwargs = {"dpi": 300}
+    if POPPLER_PATH:
+        convert_kwargs["poppler_path"] = POPPLER_PATH
+
+    pages = convert_from_path(pdf_path, **convert_kwargs)
     text_all = ""
 
     for i, page in enumerate(pages):

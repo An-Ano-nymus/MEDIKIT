@@ -31,6 +31,7 @@ Push the image to your registry of choice and point your hosting provider at it.
 2. Set build command: `npm ci`
 3. Set start command: `npm start`
 4. Add env vars listed above (special care for `CLIENT_URLS`).
+5. `npm ci` will automatically run the `postinstall` script, which executes `python -m pip install -r python_scripts/requirements.txt`. Make sure your host image provides Python 3 + pip.
 5. Enable persistent storage for `/app/uploads` if you want uploaded files to survive restarts, or plug in S3/Blob storage and adjust the upload path.
 
 ## 4. Session & SSL Notes

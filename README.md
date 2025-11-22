@@ -9,12 +9,13 @@ This repository contains:
 - Node.js 18+
 - MongoDB (connection string in `backend/login-signup/.env` as `MONGO_URI`)
 - Python 3.10+ with any extra packages required by the python scripts
+   - `npm install` in the backend automatically installs the Python dependencies via pip; ensure `python3`/`pip` are on your PATH.
 
 ## Setup & Run
 
 1. Backend
    - cd backend/login-signup
-   - npm install
+   - npm install (runs pip install for `python_scripts/requirements.txt`)
    - Create `.env` with `MONGO_URI=mongodb://localhost:27017/medkit` and optionally `PORT=5000`
    - npm run dev
 
