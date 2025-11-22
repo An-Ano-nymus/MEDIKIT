@@ -16,6 +16,7 @@ This repository contains:
 1. Backend
    - cd backend/login-signup
    - npm install (runs pip install for `python_scripts/requirements.txt`)
+   - Cloud build (Render/Railway): run `bash render-build.sh` instead of plain `npm ci` so Tesseract/Poppler binaries are installed before the Node dependencies.
    - Create `.env` with `MONGO_URI=mongodb://localhost:27017/medkit` and optionally `PORT=5000`
    - npm run dev
 
