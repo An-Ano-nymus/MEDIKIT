@@ -3,7 +3,7 @@ import os
 from cerebras.cloud.sdk import Cerebras
 from image_to_text import auto_text
 
-sys.stdout.reconfigure(line_buffering=True)  # stream print outputs
+sys.stdout.reconfigure(encoding='utf-8', errors='replace', line_buffering=True)
 
 file_path = sys.argv[1]
 report = auto_text(file_path)
