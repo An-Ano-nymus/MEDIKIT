@@ -28,7 +28,7 @@ Push the image to your registry of choice and point your hosting provider at it.
 
 ## 3. Render/Railway (Node buildpack)
 1. Create a new Web Service pointing at `backend/login-signup`.
-2. Set build command: `bash render-build.sh` (installs `tesseract-ocr` and `poppler-utils` before running `npm ci`).
+2. Set build command: `bash render-build.sh` (attempts to install `tesseract-ocr`/`poppler-utils` when apt is writable, otherwise it gracefully skips and relies on the bundled EasyOCR pipeline).
 3. Set start command: `npm start`
 4. Add env vars listed above (special care for `CLIENT_URLS`).
 5. The npm `postinstall` script automatically executes `python -m pip install -r python_scripts/requirements.txt`. Make sure your host image provides Python 3 + pip.
